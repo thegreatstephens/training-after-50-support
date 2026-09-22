@@ -35,7 +35,7 @@ footer{text-align:center;padding:28px 18px;color:#66717a}
 <p class="sub">Record your exercises, weights and reps, review previous workouts, track your progress, and keep 70 illustrated exercise guides at your fingertips.</p>
 <div class="price">$19.99 ONE TIME</div>
 <div class="nosub">NO SUBSCRIPTION</div>
-<a class="cta" href="https://apps.apple.com/us/app/training-after-50/id6811339121">Download on the App Store</a>
+<a class="cta app-store-cta" href="https://apps.apple.com/us/app/training-after-50/id6811339121" data-track="app_store_click">Download on the App Store</a>
 </header>
 <main>
 <section class="card">
@@ -53,7 +53,7 @@ footer{text-align:center;padding:28px 18px;color:#66717a}
 <section class="card center">
 <h2>Built with Adults 50+ in Mind</h2>
 <p>Whether you're returning to strength training or have been lifting for years, Training After 50 gives you a simple place to record the work you're doing and see where you've been.</p>
-<a class="cta" href="https://apps.apple.com/us/app/training-after-50/id6811339121">Get Training After 50 — $19.99</a>
+<a class="cta app-store-cta" href="https://apps.apple.com/us/app/training-after-50/id6811339121" data-track="app_store_click">Get Training After 50 — $19.99</a>
 </section>
 <section class="card">
 <h2>Support</h2>
@@ -74,5 +74,24 @@ footer{text-align:center;padding:28px 18px;color:#66717a}
 </section>
 </main>
 <footer>© 2026 Scott Stephens. Training After 50. All rights reserved.</footer>
+<script>
+(function () {
+  function trackAppStoreClick(label) {
+    try {
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'AppStoreClick', {button: label || 'app_store_cta'});
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'app_store_click', {button: label || 'app_store_cta'});
+      }
+    } catch (e) {}
+  }
+  document.querySelectorAll('.app-store-cta').forEach(function (link, index) {
+    link.addEventListener('click', function () {
+      trackAppStoreClick(index === 0 ? 'hero' : 'mid_page');
+    });
+  });
+})();
+</script>
 </body>
 </html>
